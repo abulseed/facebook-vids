@@ -2,6 +2,13 @@
 
 The frontend application lists facebook videos loaded from a dummy data source `data-source.json`. Features are implemented using [Vue.js](https://vuejs.org/).
 
+## Resources
+
+1- Vue: Web framework.
+1- Vue-infinite-scroll: Used to implement infinite scroll data loading.
+2- Vue-mdc-adapter: Vue adapter for Material UI framework. Used to implement the application UI.
+3- Vuex: Vue store used to manage the state of the application.
+
 ## Run the application
 
 Note: This application requires `node` and `npm` to be installed. Please refer to [Node.js](https://nodejs.org/en/) for installation options.
