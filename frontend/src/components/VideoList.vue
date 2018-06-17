@@ -3,8 +3,12 @@
     <div>
       <sort-panel/>
     </div>
+
     <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
-      <video-card v-for="video in videos" :video="video" :key="video.title" />
+      <template v-if="videos.length > 0">
+        <video-card v-for="video in videos" :video="video" :key="video.title" />
+      </template>
+      <h1 v-else>No results</h1>
     </div>
   </div>
 </template>

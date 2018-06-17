@@ -15,6 +15,7 @@ export default new Vuex.Store({
     filterPayload: "",
     sorted: false,
     sortedPayload: "",
+    order: "asc",
   },
   mutations: {
     initVideos(state) {
@@ -31,7 +32,11 @@ export default new Vuex.Store({
           || v.parent_name.toLowerCase().includes(state.filterPayload));
       }
       if (state.sorted) {
-        tmpArr = tmpArr.sort((a, b) => a[state.sortedPayload] - b[state.sortedPayload])
+        if (state.order === 'asc') {
+          tmpArr = tmpArr.sort((a, b) => a[state.sortedPayload] - b[state.sortedPayload])
+        } else {
+          tmpArr = tmpArr.sort((a, b) => b[state.sortedPayload] - a[state.sortedPayload])
+        }
       }
       tmpArr = tmpArr.slice(tmp, state.offset);
       for (let index = 0; index < tmpArr.length; index++) {
@@ -50,7 +55,11 @@ export default new Vuex.Store({
         state.filtered = false;
       }
       if (state.sorted) {
-        tmpArr = tmpArr.sort((a, b) => a[state.sortedPayload] - b[state.sortedPayload])
+        if (state.order === 'asc') {
+          tmpArr = tmpArr.sort((a, b) => a[state.sortedPayload] - b[state.sortedPayload])
+        } else {
+          tmpArr = tmpArr.sort((a, b) => b[state.sortedPayload] - a[state.sortedPayload])
+        }
       }
       state.videos = tmpArr.slice(state.offset, state.pageSize);
       state.offset = state.pageSize;
@@ -60,6 +69,7 @@ export default new Vuex.Store({
       const sortBy = payload.sortBy.toLowerCase();
       const order = payload.order.toLowerCase();
       state.sortedPayload = sortBy;
+      state.order = order;
       state.offset = 0;
       console.log(sortBy);
       if (state.filtered) {
