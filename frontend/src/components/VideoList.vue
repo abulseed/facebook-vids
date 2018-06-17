@@ -1,11 +1,7 @@
 <template>
   <div>
     <div>
-      <mdc-select v-model="sortBy" label="Sort By">
-        <option>Views</option>
-        <option>Likes</option>
-        <option>Shares</option>
-      </mdc-select>
+      <sort-panel/>
     </div>
     <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
       <video-card v-for="video in videos" :video="video" :key="video.title" />
@@ -17,6 +13,7 @@
 import VueMDCList from "vue-mdc-adapter/dist/list";
 import VueMDCSelect from "vue-mdc-adapter/dist/select";
 import VideoCard from "./VideoCard.vue";
+import SortPanel from "./SortPanel.vue";
 import { mapState } from "vuex";
 
 export default {
@@ -27,7 +24,8 @@ export default {
     };
   },
   components: {
-    VideoCard
+    VideoCard,
+    SortPanel
   },
   mixins: [VueMDCList, VueMDCSelect],
   computed: {

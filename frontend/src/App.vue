@@ -17,6 +17,7 @@ export default {
 <style src="../node_modules/vue-mdc-adapter/dist/card/card.min.css"></style>
 <style src="../node_modules/vue-mdc-adapter/dist/typography/typography.min.css"></style>
 <style src="../node_modules/vue-mdc-adapter/dist/select/select.min.css"></style>
+<style src="../node_modules/vue-mdc-adapter/dist/layout-grid/layout-grid.min.css"></style>
 <style lang="scss">
 body {
   max-width: 50%;

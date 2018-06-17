@@ -57,16 +57,21 @@ export default new Vuex.Store({
     },
     sortVideos(state, payload) {
       let tmpArr = videosArr;
-      payload = payload.toLowerCase();
-      state.sortedPayload = payload;
+      const sortBy = payload.sortBy.toLowerCase();
+      const order = payload.order.toLowerCase();
+      state.sortedPayload = sortBy;
       state.offset = 0;
-      console.log(payload);
+      console.log(sortBy);
       if (state.filtered) {
         tmpArr = tmpArr.filter(v => v.title.toLowerCase().includes(state.filterPayload)
           || v.parent_name.toLowerCase().includes(state.filterPayload));
       }
-      if (payload && payload.length > 0) {
-        tmpArr = tmpArr.sort((a, b) => a[payload] - b[payload]);
+      if (sortBy && sortBy.length > 0) {
+        if (order === 'asc') {
+          tmpArr = tmpArr.sort((a, b) => a[sortBy] - b[sortBy]);
+        } else {
+          tmpArr = tmpArr.sort((a, b) => b[sortBy] - a[sortBy]);
+        }
         state.sorted = true;
       } else {
         state.sorted = false;
