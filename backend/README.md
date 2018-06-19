@@ -14,6 +14,10 @@ This CLI app accepts a valid facebook `access_token` & a facebook page `url` fro
 
 The app performance is highly affected by the internet connection speed. Kindly consider measuring the app performance using multiple runs and calculate the mean time cost for all the runs.
 
+### Note
+
+Please note that total count of views is not included, due to access limitation on the video insights edge.
+
 ## Run the application
 
 Note: This application requires `node` and `npm` to be installed. Please refer to [Node.js](https://nodejs.org/en/) for installation options.
