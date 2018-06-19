@@ -16,7 +16,7 @@ The app performance is highly affected by the internet connection speed. Kindly 
 
 ### Note
 
-Please note that total count of views is not included, due to access limitation on the video insights edge.
+Please note that total count of views is not included, due to access limitations on the video insights edge.
 
 ## Run the application
 
