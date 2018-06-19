@@ -1,8 +1,7 @@
 import * as readline from 'readline';
 import * as async from 'async';
 import { URL } from 'url';
-import { partial } from 'ramda';
-import { StartAggregation, FillSharesCount } from '../graph/ApiAdapter';
+import { StartAggregation, VideoMainMapper } from '../graph/ApiAdapter';
 import { Video } from '../types/BusinessTypes';
 import { Serialize } from '../serializers/VideoSerializer';
 
@@ -41,16 +40,18 @@ function buildConfig() {
   ], async () => {
     try {
       rl.close();
-      console.time('Crawl_Videos');
-      const videos: Video[] = await StartAggregation(config);
-      const promises = videos.map(async (v: Video) => {
-        const tmp = v;
-        tmp.shares_count = await FillSharesCount({ page_id: v.page_id, id: v.id, access_token: config.access_token });
-        return tmp;
-      });
+      console.time('Total_Time');
+      console.time('Load_Data_From_Api');
+      const videosData: any[] = await StartAggregation(config);
+      console.timeEnd('Load_Data_From_Api');
+      console.time('Load_Each_Share');
+      const promises = videosData.map(VideoMainMapper);
       const vv = await Promise.all(promises);
+      console.timeEnd('Load_Each_Share');
+      console.time('Serialize');
       Serialize(vv);
-      console.timeEnd('Crawl_Videos');
+      console.timeEnd('Serialize');
+      console.timeEnd('Total_Time');
     } catch (error) {
       throw error;
     }
